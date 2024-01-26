@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "649711247756",
+    "project_id": "prothesiaapp-6631f",
+    "storage_bucket": "prothesiaapp-6631f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649711247756:android:6986e99c7016bcda6776a9",
+        "android_client_info": {
+          "package_name": "com.example.ctgb_appv1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfQc_qreh9BCcHfjMfy7lGDYPd39bu4Mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
