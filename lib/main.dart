@@ -1,8 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: "AIzaSyAxeDw97qMj44tffTBxCPOVcqfMrAuR8g0",
+        appId: "1:649711247756:web:b172f1fa4786a5416776a9",
+        messagingSenderId: "649711247756",
+        projectId: "prothesiaapp-6631f",
+      ),
+    );
+  } else {
+    // Initialize Firebase for non-web platforms
+    await Firebase.initializeApp();
+  }
+
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -55,7 +74,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counter = 69;
 
   void _incrementCounter() {
     setState(() {
