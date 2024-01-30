@@ -1,6 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: "AIzaSyB6kC8aabHIWimQgUC9IU3PvLVxlaLPrLY",
+        appId: "1:985749654972:web:38f2f3138616530f206fb9",
+        messagingSenderId: "985749654972",
+        projectId: "ctgb-db872",
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
+
   runApp(const MyApp());
 }
 
@@ -55,7 +72,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counter = 68;
 
   void _incrementCounter() {
     setState(() {
