@@ -7,23 +7,19 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  try {
-    if (!kIsWeb) {
-      await Firebase.initializeApp(
-        options: FirebaseOptions(
-          apiKey: "your-api-key",
-          appId: "your-app-id",
-          messagingSenderId: "your-messaging-sender-id",
-          projectId: "your-project-id",
-        ),
-      );
-    }
-
-    runApp(MyApp());
-  } catch (e) {
-    print('Error initializing Firebase: $e');
-    // Handle the error or display a message to the user
+  if (!kIsWeb) {
+    await Firebase.initializeApp(
+      name : 'CTGB',
+      options: FirebaseOptions(
+        apiKey: "your-api-key",
+        appId: "your-app-id",
+        messagingSenderId: "your-messaging-sender-id",
+        projectId: "your-project-id",
+      ),
+    );
   }
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

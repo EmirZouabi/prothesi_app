@@ -1,16 +1,31 @@
 
 buildscript {
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0'
+        classpath 'com.android.tools.build:gradle:8.2.2'
     }
 }
 
 plugins {
-    id "com.android.application"
-    id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin"
-    id "com.google.gms.google-services"
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.android'
+    id 'dev.flutter.flutter-gradle-plugin'
 }
+
+android {
+    compileSdkVersion 30 // Use the appropriate version
+    defaultConfig {
+        // Your configuration here
+    }
+    // Other Android configurations
+}
+
+// Other configurations and dependencies
+
+
+
+
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -33,7 +48,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.ctgb_appv1"
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    ndkVersion "25.1.8937393"
 
     dependencies {
         implementation platform("com.google.firebase:firebase-bom:32.7.1")
