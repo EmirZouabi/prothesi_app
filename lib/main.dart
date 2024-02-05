@@ -7,19 +7,22 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (!kIsWeb) {
+  try {
     await Firebase.initializeApp(
-      name : 'CTGB',
+      name: 'CTGB',
       options: FirebaseOptions(
-        apiKey: "your-api-key",
-        appId: "your-app-id",
-        messagingSenderId: "your-messaging-sender-id",
-        projectId: "your-project-id",
+        apiKey: "AIzaSyB6kC8aabHIWimQgUC9IU3PvLVxlaLPrLY",
+        appId: "1:985749654972:web:38f2f3138616530f206fb9",
+        messagingSenderId: "985749654972",
+        projectId: "ctgb-db872",
       ),
     );
-  }
 
-  runApp(MyApp());
+    runApp(MyApp());
+  } catch (e) {
+    print('Error initializing Firebase: $e');
+    // Handle the error or display a message to the user
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -34,9 +37,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen(
-        child: LoginPage(),
-      ),
+      routes: {
+        "/": (context) => SplashScreen(
+          child: LoginPage(),
+        ),
+        "/login": (context) => LoginPage(),
+        // ... other routes
+      },
     );
   }
 }
