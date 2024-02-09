@@ -4,9 +4,11 @@ import 'package:ctgb_appv1/features/user_auth/presentation/pages/login_page.dart
 import 'package:ctgb_appv1/features/user_auth/presentation/pages/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   try {
     await Firebase.initializeApp(
@@ -38,33 +40,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      home: SplashScreen(
+        child: LoginPage(),
+      ),
       routes: {
-        "/": (context) => SplashScreen(
-          child: LoginPage(),
-        ),
-        "/login": (context) => LoginPage(),
+        '/login': (context) => LoginPage(),
         '/signUp': (context) => SignUpPage(),
-        "/home": (context) => HomePage(),
+        '/home': (context) => HomePage(),
+        // ... other routes
       },
-      onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => UnknownPage());
-      },
-    );
-  }
-}
-
-// Replace UnknownPage with an appropriate fallback widget or page.
-class UnknownPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Unknown Page'),
-      ),
-      body: Center(
-        child: Text('Page not found!'),
-      ),
     );
   }
 }
