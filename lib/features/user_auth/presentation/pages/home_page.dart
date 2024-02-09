@@ -1,10 +1,10 @@
+import 'package:ctgb_appv1/global/common/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ctgb_appv1/features/user_auth/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("HomePage"),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Text("Welcome to Home"),
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           FirebaseAuth.instance.signOut();
           Navigator.pushNamed(context, "/login");
+          showToast(message: "successfully signed out");
         },
         style: ElevatedButton.styleFrom(
           primary: Colors.greenAccent,

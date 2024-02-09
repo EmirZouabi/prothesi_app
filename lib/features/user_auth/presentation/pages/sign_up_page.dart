@@ -2,9 +2,9 @@ import 'package:ctgb_appv1/features/user_auth/firebase_auth_implementation/fireb
 import 'package:ctgb_appv1/features/user_auth/presentation/pages/home_page.dart';
 import 'package:ctgb_appv1/features/user_auth/presentation/pages/login_page.dart';
 import 'package:ctgb_appv1/features/user_auth/presentation/widgets/form_container_widget.dart';
+import 'package:ctgb_appv1/global/common/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -18,6 +18,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  bool _isSigningUp = false; // Added loading indicator flag
 
   @override
   void dispose() {
@@ -33,6 +34,7 @@ class _SignUpPageState extends State<SignUpPage> {
       appBar: AppBar(
         title: Text("Sign Up"),
         backgroundColor: Colors.greenAccent,
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Padding(
@@ -73,7 +75,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
-                    child: Text(
+                    child: _isSigningUp
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : Text(
                       "Sign Up",
                       style: TextStyle(
                         color: Colors.white,
@@ -115,6 +119,10 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _signUp() async {
+    setState(() {
+      _isSigningUp = true;
+    });
+
     String username = _usernameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
@@ -122,14 +130,21 @@ class _SignUpPageState extends State<SignUpPage> {
     try {
       User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
+      setState(() {
+        _isSigningUp = false;
+      });
+
       if (user != null) {
-        print("User is successfully created");
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+        showToast(message: "User is successfully created");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
       } else {
-        print("Some error happened during user creation");
+        showToast(message: "Some error happened during user creation");
       }
     } catch (e) {
-      print("Error during user creation: $e");
+      showToast(message: "Error during user creation: $e");
       // Handle error here, you might want to show a snackbar or dialog to the user
     }
   }
