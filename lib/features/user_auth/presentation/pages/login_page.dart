@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  bool _isSigning = false; // Corrected variable name
+  bool _isSigning = false;
 
   @override
   void dispose() {
@@ -80,11 +80,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
                   _signInWithGoogle();
-
                 },
                 child: Container(
                   width: double.infinity,
@@ -97,8 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(FontAwesomeIcons.google,color: Colors.white,),
-                        SizedBox(width: 5,),
+                        Icon(FontAwesomeIcons.google, color: Colors.white),
+                        SizedBox(width: 5),
                         Text(
                           "Sign in with Google",
                           style: TextStyle(
@@ -163,24 +162,24 @@ class _LoginPageState extends State<LoginPage> {
           MaterialPageRoute(builder: (context) => HomePage()),
         );
       } else {
-        showToast(message: "Invalid credentials. Please check your email and password.");
+        showToast(
+            message: "Invalid credentials. Please check your email and password.");
       }
     } catch (e) {
       showToast(message: "Error during login: $e");
     }
   }
 
-  _signInWithGoogle()async{
-
+  _signInWithGoogle() async {
     final GoogleSignIn _googleSignIn = GoogleSignIn();
 
     try {
+      final GoogleSignInAccount? googleSignInAccount =
+      await _googleSignIn.signIn();
 
-      final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-
-      if(googleSignInAccount != null ){
-        final GoogleSignInAuthentication googleSignInAuthentication = await
-        googleSignInAccount.authentication;
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount.authentication;
 
         final AuthCredential credential = GoogleAuthProvider.credential(
           idToken: googleSignInAuthentication.idToken,
@@ -190,13 +189,9 @@ class _LoginPageState extends State<LoginPage> {
         await _firebaseAuth.signInWithCredential(credential);
         Navigator.pushNamed(context, "/home");
       }
-
-    }catch(e) {
-      showToast(message: "some error occured $e");
+    } catch (e) {
+      showToast(message: "Some error occurred $e");
+      print(e);
     }
-
-
   }
-
-
 }

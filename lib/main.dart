@@ -1,7 +1,7 @@
 import 'package:ctgb_appv1/features/app/splash_screen/splash_screen.dart';
+import 'package:ctgb_appv1/features/user_auth/presentation/pages/home_page.dart';
 import 'package:ctgb_appv1/features/user_auth/presentation/pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_app_check/firebase_app_check.dart'; // Import the Firebase App Check library
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -18,9 +18,6 @@ void main() async {
         projectId: "ctgb-db872",
       ),
     );
-
-    // Initialize Firebase App Check
-    await FirebaseAppCheck.instance.activate();
 
     runApp(MyApp());
   } catch (e) {
@@ -46,6 +43,7 @@ class MyApp extends StatelessWidget {
           child: LoginPage(),
         ),
         "/login": (context) => LoginPage(),
+        "/home": (context) => HomePage(),
         // ... other routes
       },
     );

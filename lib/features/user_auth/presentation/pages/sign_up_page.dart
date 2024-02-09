@@ -146,6 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
     } catch (e) {
       showToast(message: "Error during user creation: $e");
       // Handle error here, you might want to show a snackbar or dialog to the user
+      print(e);
     }
   }
 }
