@@ -8,6 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'ForgotPasswordPage.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -55,18 +57,52 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 30),
+
+
                 FormContainerWidget(
                   controller: _emailController,
                   hintText: "Email",
                   isPasswordField: false,
                 ),
+                
+
+
                 SizedBox(height: 10),
+                
+                
+
+
                 FormContainerWidget(
                   controller: _passwordController,
                   hintText: "Password",
                   isPasswordField: true,
                 ),
-                SizedBox(height: 30),
+
+                SizedBox(height:10),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap:(){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordPage()) ,);
+                },
+                        child: Text('Forgot Password?',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+//        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);
+
+                SizedBox(height: 10),
                 GestureDetector(
                   onTap: _login,
                   child: Container(
