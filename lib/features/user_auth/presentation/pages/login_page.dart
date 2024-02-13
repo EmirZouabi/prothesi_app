@@ -22,7 +22,9 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  bool rememberMe = false;
   bool _isSigning = false;
+
 
   @override
   void dispose() {
@@ -88,14 +90,42 @@ class _LoginPageState extends State<LoginPage> {
                       GestureDetector(
                         onTap:(){
                           Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordPage()) ,);
-                },
+                        },
                         child: Text('Forgot Password?',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: rememberMe ,
+                            onChanged: (bool? value) { setState(() {rememberMe =value!;});},
+                            fillColor: MaterialStateColor.resolveWith((states) => Colors.grey.shade100),
+                            checkColor: Colors.black54,
+                          ),
+                          Text('Remember Me',
                             style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.bold,
                             ),
-                        ),
-                      ),
+                          ),
+
+
+                        ],
+                      )
                     ],
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:ctgb_appv1/features/app/splash_screen/splash_screen.dart';
 import 'package:ctgb_appv1/features/user_auth/presentation/pages/home_page.dart';
 import 'package:ctgb_appv1/features/user_auth/presentation/pages/login_page.dart';
 import 'package:ctgb_appv1/features/user_auth/presentation/pages/sign_up_page.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -9,6 +10,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  await FirebaseAppCheck.instance.activate();
 
   try {
     await Firebase.initializeApp(
