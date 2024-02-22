@@ -36,7 +36,14 @@ class _SignUpPageState extends State<SignUpPage> {
         backgroundColor: Colors.greenAccent,
         automaticallyImplyLeading: false,
       ),
-      body: Center(
+
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/pic2.jpg"), // Replace with your image path
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(

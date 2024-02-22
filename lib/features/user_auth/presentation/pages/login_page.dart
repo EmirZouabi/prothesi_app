@@ -35,8 +35,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return
-    Scaffold(
+    return Scaffold(
+      resizeToAvoidBottomInset: false, // Use this line
       appBar: AppBar(
         title: Text("Login"),
         backgroundColor: Colors.greenAccent,
@@ -66,12 +66,12 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: "Email",
                   isPasswordField: false,
                 ),
-                
+
 
 
                 SizedBox(height: 10),
-                
-                
+
+
 
 
                 FormContainerWidget(

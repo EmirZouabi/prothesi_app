@@ -45,6 +45,9 @@ dependencies:
   fluttertoast: ^8.2.2
   font_awesome_flutter: ^10.7.0
   google_sign_in: ^6.2.1
+  google_nav_bar: ^5.0.6
+  add_2_calendar: ^3.0.1
+  table_calendar: ^3.0.1
 
 
 
@@ -68,6 +71,7 @@ flutter:
 
   assets:
     - assets/pic2.jpg
+    - assets/pic3.webp
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

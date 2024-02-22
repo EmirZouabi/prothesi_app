@@ -63,22 +63,20 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   //another meythode
-  Future<void> sendPasswordResetEmail() async{
-  String email = _emailResetController.text.trim();
-    try{
-
+  Future<void> sendPasswordResetEmail() async {
+    String email = _emailResetController.text.trim();
+    try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       showToast(message: 'Password reset link sent! Check your email');
-
-    } on FirebaseAuthException catch(e){
+    } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
-    } on FirebaseException catch (e){
+    } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
-    } on FormatException catch (e){
+    } on FormatException catch (_) {
       throw const TFormatException();
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
-    }catch (e){
+    } catch (_) {
       throw 'Something went wrong. Please try again';
     }
   }
